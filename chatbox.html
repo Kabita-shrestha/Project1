@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Student Hub - Chat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #eef2ff, #f3e8ff);
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    /* Scrollbar style for chat messages */
+    #chatMessages::-webkit-scrollbar {
+      width: 8px;
+    }
+    #chatMessages::-webkit-scrollbar-thumb {
+      background-color: #a78bfa;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="flex justify-between items-center bg-white rounded-2xl shadow-md p-4 max-w-5xl mx-auto mb-6">
+    <div class="flex items-center">
+      <img src="image/Logo.jpeg" alt="Logo" class="w-12 h-12 rounded-full" />
+      <h1 class="ml-4 text-2xl font-bold text-purple-700">Smart Student Hub</h1>
+    </div>
+    <a href="after_login.html" class="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-lg transition">← Back to Dashboard</a>
+  </header>
+
+  <!-- Chat Container -->
+  <main class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl flex flex-col h-[600px]">
+
+    <div class="bg-purple-700 text-white font-bold text-center rounded-t-2xl p-4">
+      💬 Smart  Study Chat
+    </div>
+
+    <div id="chatMessages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"></div>
+
+    <form id="chatForm" class="flex border-t border-gray-200 p-4 rounded-b-2xl">
+      <input
+        type="text"
+        id="userInput"
+        placeholder="Type your message here..."
+        class="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-400"
+        autocomplete="off"
+        required
+      />
+      <button
+        type="submit"
+        class="ml-4 bg-purple-700 hover:bg-purple-800 text-white font-semibold px-6 rounded-full transition"
+      >
+        Send
+      </button>
+    </form>
+  </main>
+
+  <!-- Quick Questions -->
+  <section class="max-w-3xl mx-auto mt-6 text-center text-purple-700 font-semibold space-x-3">
+    <p class="mb-2 font-bold">Try asking:</p>
+    <button
+      onclick="sendQuickQuestion('How can I improve my grade?')"
+      class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg transition"
+    >
+      How can I improve my grade?
+    </button>
+    <button
+      onclick="sendQuickQuestion('What are some effective study techniques?')"
+      class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg transition"
+    >
+      Effective study techniques?
+    </button>
+    <button
+      onclick="sendQuickQuestion('How to manage time efficiently?')"
+      class="bg-purple-100 hover:bg-purple-200 px-4 py-2 rounded-lg transition"
+    >
+      How to manage time efficiently?
+    </button>
+  </section>
+
+  <script>
+    const chatMessages = document.getElementById("chatMessages");
+    const chatForm = document.getElementById("chatForm");
+    const userInput = document.getElementById("userInput");
+
+    const predefinedAnswers = {
+      "how can i improve my grade?": "To improve your grades, focus on consistent study, practice regularly, ask questions when unclear, and seek help from teachers or tutors.",
+      "what are some effective study techniques?": "Effective techniques include active recall, spaced repetition, summarizing concepts, and practicing past papers.",
+      "how to manage time efficiently?": "Plan your day, prioritize tasks, avoid multitasking, take regular breaks, and use tools like calendars or timers."
+    };
+
+    function addMessage(message, sender) {
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("max-w-[75%]", "px-4", "py-2", "rounded-2xl", "whitespace-pre-wrap");
+      if (sender === "user") {
+        msgDiv.classList.add("bg-purple-700", "text-white", "ml-auto", "text-right");
+      } else {
+        msgDiv.classList.add("bg-purple-200", "text-purple-900", "mr-auto", "text-left");
+      }
+      msgDiv.textContent = message;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getBotReply(message) {
+      const msg = message.toLowerCase().trim();
+      return predefinedAnswers[msg] || "Sorry, I can only answer a few questions right now. Please try one of the suggested questions.";
+    }
+
+    chatForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      addMessage(message, "user");
+      userInput.value = "";
+
+      addMessage("Typing...", "bot");
+
+      setTimeout(() => {
+        // Remove "Typing..."
+        const typingElem = [...chatMessages.querySelectorAll(".bg-purple-200")].find(el => el.textContent === "Typing...");
+        if (typingElem) typingElem.remove();
+
+        const reply = getBotReply(message);
+        addMessage(reply, "bot");
+      }, 1000);
+    });
+
+    function sendQuickQuestion(question) {
+      userInput.value = question;
+      chatForm.dispatchEvent(new Event("submit"));
+    }
+  </script>
+
+</body>
+</html>

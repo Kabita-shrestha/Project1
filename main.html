@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Student Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #eef2ff, #f3e8ff);
+      color: #333;
+      padding: 20px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 15px 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+    header img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    header h1 {
+      margin-left: 10px;
+      font-size: 24px;
+      color: #4f46e5;
+    }
+    .section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      color: #4f46e5;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .btn-green { background: #10b981; }
+    .btn-yellow { background: #f59e0b; }
+    .btn-pink { background: #ec4899; }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .title h2 {
+      font-size: 32px;
+      color: #4f46e5;
+      font-weight: 700;
+    }
+    .title p {
+      font-size: 16px;
+      color: #666;
+    }
+    .team-section {
+      margin-top: 50px;
+    }
+    .team-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .team-title h2 {
+      font-size: 28px;
+      color: #4f46e5;
+    }
+    .team-members {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      justify-content: center;
+    }
+    .member {
+      background: linear-gradient(135deg, #ffffff, #f0f4ff);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+    }
+    .member:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    }
+    .member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #4f46e5;
+      margin-bottom: 15px;
+    }
+    .member h4 {
+      color: #4f46e5;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .member p {
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display: flex; align-items: center;">
+      <img src="image/Logo.jpeg" alt="Logo" />
+      <h1>Smart Student Hub</h1>
+    </div>
+    <a href="login.html" class="btn btn-green">Login</a>
+  </header>
+
+  <div class="title">
+    <h2>Welcome, Smart Learner! 🚀</h2>
+    <p>Your ultimate dashboard for calendars, notes, quizzes, flashcards and more — all in one place.</p>
+  </div>
+
+  <section class="section">
+    <div class="card">
+      <h3><i class="fa-regular fa-calendar-days"></i> Smart Calendar</h3>
+      <p>Keep track of all your classes, deadlines, and plans in one beautiful calendar.</p>
+      <div><input type="date" /></div>
+    </div>
+
+    <div class="card">
+      <h3><i class="fa-solid fa-clone"></i> Flashcards</h3>
+      <p>Review concepts easily with smart flashcards made by you or shared by peers.</p>
+      <a href="login.html" class="btn btn-green">Start Reviewing</a>
+    </div>
+
+    <div class="card">
+      <h3><i class="fa-solid fa-bolt"></i> Quick Quiz</h3>
+      <p>Challenge your brain with short quizzes and measure your progress.</p>
+      <a href="login.html" class="btn btn-yellow">Take a Quiz</a>
+    </div>
+
+    <div class="card">
+      <h3><i class="fa-regular fa-comments"></i> Need Help?</h3>
+      <p>Get quick answers with our chatbot or reach out to your study group.</p>
+      <a href="login.html" class="btn btn-pink">Open Chat</a>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="team-title">
+      <h2>👨‍🏫 Meet Our Team</h2>
+    </div>
+    <div class="team-members">
+      <div class="member">
+        <img src="image/Kabita.jpg" alt="kabita Shrestha">
+        <h4>Kabita Shrestha</h4>
+        <p> Developer/UI designer</p>
+      </div>
+      <div class="member">
+        <img src="image/sopnil.jpg" alt="sopnil">
+        <h4>Sopanil Joshi </h4>
+        <p>UI/UX Designer </p>
+      </div>
+      <div class="member">
+        <img src="image/aishworya.jpg" alt=" aisworiya">
+        <h4>Aishwarya Prashant</h4>
+        <p>Quiz & Content Creator</p>
+      </div>
+      <div class="member">
+        <img src="image/samujal.jpg" alt="Samujwal Bhutrel">
+        <h4>Sauwjal Bhutrel</h4>
+        <p>UI designer</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Smart Student Hub. Learn smarter, not harder.
+  </footer>
+</body>
+</html>
